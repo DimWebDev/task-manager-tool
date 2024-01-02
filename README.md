@@ -8,7 +8,7 @@ This project is centered around building a comprehensive Task Manager tool, util
 
 The development of the Task Manager tool is guided by the principles of API-driven development, a decision made for several key reasons:
 
-- **Integration of Frontend and Backend**: By designing the API first, we ensure seamless integration between the frontend and backend parts of the application. This clear delineation of responsibilities allows for efficient parallel development.
+- **Integration of Frontend and Backend**: By designing the API first, we ensure that this backend project can seamlessly integrate the frontend parts of a broader application. This clear delineation of responsibilities allows for efficient parallel development.
 
 - **Client Flexibility**: The API-first approach enables the Task Manager tool to be accessible to a variety of clients, including web interfaces, mobile applications, and potential third-party integrations.
 
