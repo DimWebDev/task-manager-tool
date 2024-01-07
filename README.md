@@ -2,7 +2,7 @@
 
 ## Overview
 
-This project is centered around building a comprehensive Task Manager tool, utilizing GoLang for backend development. The core of the application is an API that provides the necessary operations to create, retrieve, update, and delete tasks. Following RESTful principles, this API offers a coherent and user-friendly set of endpoints for client-side interactions.
+This project is centered around building a comprehensive Task Manager tool, utilizing GoLang for backend development. In order to proceed with it and run it locally, you must first download Golang and PostgreSQL The core of the application is an API that provides the necessary operations to create, retrieve, update, and delete tasks. Following RESTful principles, this API offers a coherent and user-friendly set of endpoints for client-side interactions.
 
 ### API-Driven Development Approach
 
@@ -124,3 +124,60 @@ Represents a task within the Task Manager application.
 Represents an error response when operations fail.
 
 - `message` (string): A human-readable message providing more details about the error.
+
+## Database Schema Definition
+
+As part of the backend setup for the Task Manager tool, a PostgreSQL database schema has been defined to store and manage the data related to tasks.
+
+### Database Setup on macOS
+
+PostgreSQL was chosen as the database system, leveraging its robust features and compatibility with GoLang. The database server was installed and initiated on macOS, and a dedicated database named `task_manager` was created to store the application data.
+
+### Tasks Table Structure
+
+The central component of the database schema is the `tasks` table, which is structured as follows:
+
+- `id`: A unique identifier for each task. It is an auto-incrementing integer and is the primary key of the table.
+- `title`: A string that holds the title of the task. This field is mandatory for each task entry.
+- `description`: A text field to store detailed information about the task. It can accommodate longer text entries.
+- `dueDate`: A date field that captures the due date for the task completion.
+- `priority`: A string that indicates the priority of the task. This could be expanded to use an enumeration for predefined priority levels.
+- `status`: A string that represents the current status of the task, such as 'pending' or 'completed'. Like priority, this could also be implemented as an enum in the future.
+
+### Schema Creation Command
+
+The following SQL command was used to create the `tasks` table:
+
+```sql
+CREATE TABLE tasks (
+    id SERIAL PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    description TEXT,
+    dueDate DATE,
+    priority VARCHAR(50),
+    status VARCHAR(50)
+);
+```
+
+This command was executed in the PostgreSQL terminal interface, after connecting to the task_manager database.
+
+### Verify Table Creation
+
+After creating the table, you can verify its existence and structure using PostgreSQL commands. These commands help ensure that the table has been created with the correct structure.
+
+- To list all tables in the current database:
+
+  ```sql
+  \dt
+
+  ```
+
+- To describe the structure of the tasks table specifically:
+
+  ```sql
+  \d tasks
+  ```
+
+Executing this command will display the detailed structure of the tasks table. It shows all column names, their respective data types, and any constraints applied, such as the PRIMARY KEY.
+
+By following these verification steps, you can confidently proceed with the development, knowing that your database schema is set up correctly.
