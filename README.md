@@ -146,18 +146,25 @@ The central component of the database schema is the `tasks` table, which is stru
 
 ### Schema Creation Command
 
-The following SQL command was used to create the `tasks` table:
+1. Create Database:
+   Create a new database called `task_manager`:
 
-```sql
-CREATE TABLE tasks (
-    id SERIAL PRIMARY KEY,
-    title VARCHAR(255) NOT NULL,
-    description TEXT,
-    dueDate DATE,
-    priority VARCHAR(50),
-    status VARCHAR(50)
-);
-```
+   ```sql
+   CREATE DATABASE task_manager;
+   ```
+
+2. The following SQL command was used to create the `tasks` table:
+
+   ```sql
+   CREATE TABLE tasks (
+       id SERIAL PRIMARY KEY,
+       title VARCHAR(255) NOT NULL,
+       description TEXT,
+       dueDate DATE,
+       priority VARCHAR(50),
+       status VARCHAR(50)
+   );
+   ```
 
 This command was executed in the PostgreSQL terminal interface, after connecting to the task_manager database.
 
@@ -181,3 +188,74 @@ After creating the table, you can verify its existence and structure using Postg
 Executing this command will display the detailed structure of the tasks table. It shows all column names, their respective data types, and any constraints applied, such as the PRIMARY KEY.
 
 By following these verification steps, you can confidently proceed with the development, knowing that your database schema is set up correctly.
+
+## Data Access Layer (DAL) Implementation
+
+I have implemented the Data Access Layer (DAL) for our Task Manager application. The DAL is a crucial component that provides an abstraction over the actual database operations, such as creating, retrieving, updating, and deleting tasks. This layer is implemented in the taskrepo.go file within the internal/repo directory.
+
+The purpose of the DAL is to interact directly with the database through SQL queries, ensuring that the rest of our application can perform data operations without being concerned with the underlying database specifics. This separation of concerns leads to cleaner, more maintainable, and scalable code.
+
+### Commitment to Industry Standards
+
+As part of my commitment to best practices and industry standards, unit testing is introduced. Unit tests are automated tests written to ensure that a section of our application (known as the "unit") meets its design and behaves as intended.
+
+In the context of our DAL, unit testing involves testing each function in taskrepo.go to validate their expected behavior against a controlled test database. This process helps us identify and fix issues early in the development cycle, paving the way for a stable and reliable application.
+
+### Setting Up a Test Database
+
+To facilitate effective unit testing, we will set up a test database that mirrors the structure of our production database. This test database allows us to replicate real-world scenarios and test our DAL's interactions with the database. By doing so, we can simulate the behavior of our application in a production-like environment, ensuring that our unit tests provide us with accurate and meaningful results.
+
+The test database will be used exclusively for running our tests and will not contain any real user data. It is configured to be reset before each test to maintain a consistent starting state for every test run.
+
+## Unit Testing
+
+To ensure the reliability and robustness of the Data Access Layer (DAL) in our Task Manager application, we adhere to industry best practices by implementing comprehensive unit tests. These tests are designed to validate that each function within our DAL performs as expected under various conditions.
+
+### Setting Up a Test Database
+
+To run the tests locally, you will need to set up a test database that mirrors the structure of the production database. Follow these steps to create and configure your test database:
+
+1. **Connect to PostgreSQL**:
+   Open your PostgreSQL command line tool and connect to your PostgreSQL server:
+
+   ```sql
+   \c postgres
+   ```
+
+2. **Create Test Database**:
+   Create a new test database called `task_manager_test`:
+
+   ```sql
+   CREATE DATABASE task_manager_test;
+   ```
+
+3. **Set Up Test Database Schema**:
+   Connect to the test database and create the necessary tables:
+
+   ```sql
+   \c task_manager_test
+
+   CREATE TABLE tasks (
+       id SERIAL PRIMARY KEY,
+       title VARCHAR(255) NOT NULL,
+       description TEXT,
+       dueDate DATE,
+       priority VARCHAR(50),
+       status VARCHAR(50)
+   );
+   ```
+
+4. **Insert Seed Data** (Optional):
+   Optionally, you can insert some seed data for testing purposes:
+   ```sql
+   INSERT INTO tasks (title, description, dueDate, priority, status)
+   VALUES ('Test Task 1', 'Description for test task 1', '2024-01-01', 'High', 'Pending');
+   ```
+
+### Running the Tests
+
+Once your test database is set up, you can run the unit tests using the Go command:
+
+```sh
+go test ./...
+```
