@@ -30,7 +30,7 @@ func (tr *TaskRepo) Create(task model.Task) error {
 // GetByID retrieves a task by its ID from the database.
 func (tr *TaskRepo) GetByID(id int) (model.Task, error) {
 	var task model.Task
-	err := tr.db.QueryRow("SELECT id, title, description, due_date, priority, status FROM tasks WHERE id = $1", id).
+	err := tr.db.QueryRow("SELECT id, title, description, duedate, priority, status FROM tasks WHERE id = $1", id).
 		Scan(&task.ID, &task.Title, &task.Description, &task.DueDate, &task.Priority, &task.Status)
 	if err != nil {
 		return model.Task{}, err
@@ -40,7 +40,7 @@ func (tr *TaskRepo) GetByID(id int) (model.Task, error) {
 
 // GetAll retrieves all tasks from the database.
 func (tr *TaskRepo) GetAll() ([]model.Task, error) {
-	rows, err := tr.db.Query("SELECT id, title, description, due_date, priority, status FROM tasks")
+	rows, err := tr.db.Query("SELECT id, title, description, duedate, priority, status FROM tasks")
 	if err != nil {
 		return nil, err
 	}
@@ -59,7 +59,7 @@ func (tr *TaskRepo) GetAll() ([]model.Task, error) {
 
 // Update modifies an existing task in the database.
 func (tr *TaskRepo) Update(task model.Task) error {
-	_, err := tr.db.Exec("UPDATE tasks SET title = $1, description = $2, due_date = $3, priority = $4, status = $5 WHERE id = $6",
+	_, err := tr.db.Exec("UPDATE tasks SET title = $1, description = $2, duedate = $3, priority = $4, status = $5 WHERE id = $6",
 		task.Title, task.Description, task.DueDate, task.Priority, task.Status, task.ID)
 	return err
 }

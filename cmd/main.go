@@ -12,8 +12,8 @@ import (
 
 const (
 	host     = "localhost"
-	port     = 5432 // Default port for PostgreSQL
-	dbname   = "task_manager" // Your database name
+	port     = 5432 
+	dbname   = "task_manager" 
 )
 
 func main() {

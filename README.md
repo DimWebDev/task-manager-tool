@@ -191,71 +191,21 @@ By following these verification steps, you can confidently proceed with the deve
 
 ## Data Access Layer (DAL) Implementation
 
-I have implemented the Data Access Layer (DAL) for our Task Manager application. The DAL is a crucial component that provides an abstraction over the actual database operations, such as creating, retrieving, updating, and deleting tasks. This layer is implemented in the taskrepo.go file within the internal/repo directory.
-
-The purpose of the DAL is to interact directly with the database through SQL queries, ensuring that the rest of our application can perform data operations without being concerned with the underlying database specifics. This separation of concerns leads to cleaner, more maintainable, and scalable code.
+The Data Access Layer (DAL) for the Task Manager application has been implemented to provide an abstraction layer for database operations. This layer, contained within the `taskrepo.go` file in the `internal/repo` directory, enables the application to perform CRUD operations on tasks without direct interaction with the underlying SQL queries.
 
 ### Commitment to Industry Standards
 
-As part of my commitment to best practices and industry standards, unit testing is introduced. Unit tests are automated tests written to ensure that a section of our application (known as the "unit") meets its design and behaves as intended.
+To adhere to industry standards and best practices, I have incorporated unit testing into the development process. These tests ensure that each function in the DAL operates correctly. By isolating each part of the application and testing it in isolation, we can identify and resolve issues promptly, leading to a more stable and reliable application.
 
-In the context of our DAL, unit testing involves testing each function in taskrepo.go to validate their expected behavior against a controlled test database. This process helps us identify and fix issues early in the development cycle, paving the way for a stable and reliable application.
+### Unit Testing with SQLMock
 
-### Setting Up a Test Database
-
-To facilitate effective unit testing, we will set up a test database that mirrors the structure of our production database. This test database allows us to replicate real-world scenarios and test our DAL's interactions with the database. By doing so, we can simulate the behavior of our application in a production-like environment, ensuring that our unit tests provide us with accurate and meaningful results.
-
-The test database will be used exclusively for running our tests and will not contain any real user data. It is configured to be reset before each test to maintain a consistent starting state for every test run.
-
-## Unit Testing
-
-To ensure the reliability and robustness of the Data Access Layer (DAL) in our Task Manager application, we adhere to industry best practices by implementing comprehensive unit tests. These tests are designed to validate that each function within our DAL performs as expected under various conditions.
-
-### Setting Up a Test Database
-
-To run the tests locally, you will need to set up a test database that mirrors the structure of the production database. Follow these steps to create and configure your test database:
-
-1. **Connect to PostgreSQL**:
-   Open your PostgreSQL command line tool and connect to your PostgreSQL server:
-
-   ```sql
-   \c postgres
-   ```
-
-2. **Create Test Database**:
-   Create a new test database called `task_manager_test`:
-
-   ```sql
-   CREATE DATABASE task_manager_test;
-   ```
-
-3. **Set Up Test Database Schema**:
-   Connect to the test database and create the necessary tables:
-
-   ```sql
-   \c task_manager_test
-
-   CREATE TABLE tasks (
-       id SERIAL PRIMARY KEY,
-       title VARCHAR(255) NOT NULL,
-       description TEXT,
-       dueDate DATE,
-       priority VARCHAR(50),
-       status VARCHAR(50)
-   );
-   ```
-
-4. **Insert Seed Data** (Optional):
-   Optionally, you can insert some seed data for testing purposes:
-   ```sql
-   INSERT INTO tasks (title, description, dueDate, priority, status)
-   VALUES ('Test Task 1', 'Description for test task 1', '2024-01-01', 'High', 'Pending');
-   ```
+For our unit tests, I employ `go-sqlmock`, a mock SQL driver that simulates database operations. This tool allows us to test our DAL functions without the need for a real database connection, thus ensuring that the tests are fast, reliable, and do not have side effects on actual databases.
 
 ### Running the Tests
 
-Once your test database is set up, you can run the unit tests using the Go command:
+To execute the unit tests, run the following command:
 
 ```sh
-go test ./...
+go test ./internal/repo
+
 ```
