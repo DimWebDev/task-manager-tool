@@ -3,10 +3,10 @@ package model
 import "time"
 
 type Task struct {
-    ID          int       `json:"id"`
+    ID          int       `json:"id,omitempty"`
     Title       string    `json:"title"`
     Description string    `json:"description"`
-    DueDate     time.Time `json:"duedate"`
-    Priority    string    `json:"priority"`
-    Status      string    `json:"status"`
+    DueDate     *time.Time `json:"dueDate,omitempty"`
+    Priority    string    `json:"priority,omitempty"`
+    Status      string    `json:"status,omitempty"`
 }
