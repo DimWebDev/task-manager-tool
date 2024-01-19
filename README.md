@@ -209,3 +209,63 @@ To execute the unit tests, run the following command:
 go test ./internal/repo
 
 ```
+
+## Presentation Layer
+
+### Overview
+
+The presentation layer of the Task Manager Tool is engineered to ensure a seamless and interactive user experience. It functions as the primary interface for all API requests, effectively directing these requests to the appropriate business logic and data access layers.
+
+### Design & Implementation
+
+Adhering to RESTful design principles, the presentation layer is composed of HTTP handlers responsible for the CRUD operations related to task management. Located within the internal/api/handlers directory, these handlers are pivotal in maintaining a clear separation of concerns, each dedicated to handling specific aspects of the application's functionality.
+
+### Routing
+
+Our routing configuration, established in router.go, utilizes the gorilla/mux package to associate HTTP methods and URL paths with their designated handlers. This setup ensures a robust and intuitive routing mechanism across the application.
+
+### Running the Application's Handlers
+
+To interact with the Task Manager Tool's functionality, you can locally execute the handlers using Postman, which simulates the client-side interaction with the API.
+
+#### Prerequisites
+
+1. **Clone the Repository**:
+2. **Start the Application**:
+
+   Within the root directory of the cloned repository, initiate the application:
+
+   ```sh
+   cd task-manager-tool
+   go run cmd/main.go
+   ```
+
+   This will start the local server, typically listening on http://localhost:8080.
+
+#### Running CreateTaskHandler with Postman
+
+**Steps**
+
+1. **Open Postman on your local machine**
+2. **Configure the request**
+
+   - Set the HTTP method to "POST".
+   - Enter the request URL: `http://localhost:8080/tasks.``
+   - In the "Headers" section, add a header with Content-Type as the key and application/json as the value.
+
+3. **Specify task details**
+
+   - Navigate to the "Body" tab, opt for "raw" data input, and select "JSON" format.
+   - Input the details of the task you want to create. For example:
+
+   ```sh
+   {
+     "title": "Sample Task",
+     "description": "This is a sample task to test the CreateTaskHandler",
+     "dueDate": "2023-12-31",
+     "priority": "High",
+     "status": "Open"
+   }
+   ```
+
+4. **Sumbit the request by clicking the "Send" button and revie the response**
