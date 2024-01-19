@@ -6,18 +6,7 @@ import (
 	"net/http"
 
 	"github.com/DimWebDev/task-manager-tool/internal/model"
-	"github.com/DimWebDev/task-manager-tool/internal/repo"
 )
-
-// TaskHandler holds the methods to handle task-related requests
-type TaskHandler struct {
-	Repo *repo.TaskRepo
-}
-
-// NewTaskHandler creates a new TaskHandler with the given repository
-func NewTaskHandler(r *repo.TaskRepo) *TaskHandler {
-	return &TaskHandler{Repo: r}
-}
 
 // CreateTaskHandler handles the creation of a new task
 func (h *TaskHandler) CreateTaskHandler(w http.ResponseWriter, r *http.Request) {
