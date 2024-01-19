@@ -230,8 +230,8 @@ To interact with the Task Manager Tool's functionality, you can locally execute 
 
 #### Prerequisites
 
-1. **Clone the Repository**:
-2. **Start the Application**:
+1. **Clone the Repository**
+2. **Start the Application**
 
    Within the root directory of the cloned repository, initiate the application:
 
