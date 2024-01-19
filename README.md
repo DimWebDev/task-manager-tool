@@ -250,7 +250,7 @@ To interact with the Task Manager Tool's functionality, you can locally execute 
 2. **Configure the request**
 
    - Set the HTTP method to "POST".
-   - Enter the request URL: `http://localhost:8080/tasks.``
+   - Enter the request URL: `http://localhost:8080/tasks.`
    - In the "Headers" section, add a header with Content-Type as the key and application/json as the value.
 
 3. **Specify task details**
