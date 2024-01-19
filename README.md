@@ -268,4 +268,8 @@ To interact with the Task Manager Tool's functionality, you can locally execute 
    }
    ```
 
-4. **Sumbit the request by clicking the "Send" button and revie the response**
+4. **Sumbit the request by clicking the "Send" button**
+
+### Routing
+
+Our routing configuration, established in router.go, utilizes the gorilla/mux package to associate HTTP methods and URL paths with their designated handlers. This setup ensures a robust and intuitive routing mechanism across the application.
