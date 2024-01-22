@@ -1,5 +1,5 @@
 // internal/repo/taskrepo.go
-// The taskrepo.go serves as the data access layer in your application architecture.
+// The taskrepo.go serves as the data access layer in the application architecture.
 // It abstracts the CRUD operations related to tasks, directly interacting with the
 // database without any business logic or presentation concerns.
 package repo

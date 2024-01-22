@@ -242,7 +242,7 @@ To interact with the Task Manager Tool's functionality, you can locally execute 
 
    This will start the local server, typically listening on http://localhost:8080.
 
-#### Running CreateTaskHandler with Postman
+#### Running the `CreateTaskHandler` handler with Postman
 
 **Steps**
 
@@ -262,10 +262,24 @@ To interact with the Task Manager Tool's functionality, you can locally execute 
    {
      "title": "Sample Task",
      "description": "This is a sample task to test the CreateTaskHandler",
-     "dueDate": "2023-12-31",
+     "dueDate": "2023-12-31T00:00:00Z",
      "priority": "High",
      "status": "Open"
    }
    ```
 
 4. **Sumbit the request by clicking the "Send" button**
+
+#### Running the `GetTaskByID` handler with Postman
+
+**Steps**
+
+1. **Open Postman on your local machine**
+2. **Configure the request**
+
+   - Set the HTTP method to "GET".
+   - Enter the request URL, including the ID of the task you want to retrieve: http://localhost:8080/tasks/1. Replace 1 with the actual ID of the task you're interested in. Our databse uses an integer as aut0-increment primary key
+
+3. **Sumbit the request by clicking the "Send" button**
+
+By using Postman to run the `GetTaskByID`, you can easily test the retrieval part of the CRUD operations of your Task Manager Tool.
