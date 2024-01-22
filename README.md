@@ -250,7 +250,7 @@ To interact with the Task Manager Tool's functionality, you can locally execute 
 2. **Configure the request**
 
    - Set the HTTP method to "POST".
-   - Enter the request URL: `http://localhost:8080/tasks.`
+   - Enter the request URL: `http://localhost:8080/tasks`
    - In the "Headers" section, add a header with Content-Type as the key and application/json as the value.
 
 3. **Specify task details**
@@ -270,6 +270,19 @@ To interact with the Task Manager Tool's functionality, you can locally execute 
 
 4. **Sumbit the request by clicking the "Send" button**
 
+#### Running the `GetAllTasks` handler with Postman
+
+**Steps**
+
+1. **Open Postman on your local machine**
+2. **Configure the request**
+
+   - Set the HTTP method to "GET".
+   - Enter the request URL to fetch all tasks: `http://localhost:8080/tasks`
+
+3. **Sumbit the request by clicking the "Send" button**
+   - A successful request will result in a 200 OK status code, and the response body will contain a JSON array of tasks. Each task in the response should adhere to the structure of your Task model. In the case of no available tasks, an empty array ([]) might be returned, depending on your API's implementation.
+
 #### Running the `GetTaskByID` handler with Postman
 
 **Steps**
@@ -278,11 +291,9 @@ To interact with the Task Manager Tool's functionality, you can locally execute 
 2. **Configure the request**
 
    - Set the HTTP method to "GET".
-   - Enter the request URL, including the ID of the task you want to retrieve: http://localhost:8080/tasks/1. Replace 1 with the actual ID of the task you're interested in. Our databse uses an integer as aut0-increment primary key.
+   - Enter the request URL, including the ID of the task you want to retrieve: `http://localhost:8080/tasks/1`. Replace 1 with the actual ID of the task you're interested in. Our databse uses an integer as aut0-increment primary key.
 
 3. **Sumbit the request by clicking the "Send" button**
-
-By using Postman to run the `GetTaskByID`, you can easily test the retrieval part of the CRUD operations of your Task Manager Tool.
 
 #### Running the `UpdateTask` handler with Postman
 
@@ -292,7 +303,7 @@ By using Postman to run the `GetTaskByID`, you can easily test the retrieval par
 2. **Configure the request**
 
    - Set the HTTP method to "PUT".
-   - Enter the request URL, including the ID of the task you want to retrieve: http://localhost:8080/tasks/1. Replace 1 with the actual ID of the task you're interested in. Our databse uses an integer as aut0-increment primary key.
+   - Enter the request URL, including the ID of the task you want to retrieve: `http://localhost:8080/tasks/1`. Replace 1 with the actual ID of the task you're interested in. Our databse uses an integer as aut0-increment primary key.
    - Navigate to the "Headers" tab below the URL input.
    - Enter Content-Type as the key and application/json as the value. This header informs the server that the request body contains JSON.
    - Prepare the JSON Payload. Choose the "raw" radio button. Select JSON from the dropdown menu that appears next to the radio buttons. Input the JSON data that corresponds to the Task struct in your Go application. For example:
@@ -303,8 +314,23 @@ By using Postman to run the `GetTaskByID`, you can easily test the retrieval par
     "description": "This is an updated description for the task.",
     "dueDate": "2024-12-31T23:59:59Z",
     "priority": "Medium",
-    "status": "In Progress"
+    "status": "In Progress"``
    }
    ```
 
 3. **Sumbit the request by clicking the "Send" button**
+
+#### Running the `DeleteTask` handler with Postman
+
+**Steps**
+
+1. **Launch Postman on your local machine**
+2. **Configure the request**
+
+   - Set the HTTP method to "DELETE".
+   - Enter the request URL, including the ID of the task you want to delete: `http://localhost:8080/tasks/1`. Replace 1 with the actual ID of the task you're targeting. The database uses an integer as an auto-increment primary key.
+
+3. **Sumbit the request by clicking the "Send" button**
+   - A successful deletion will result in a 204 No Content response if your API is configured to respond with this status code.
+   - If the specified task is not found, you should see a 404 Not Found response.
+   - Any server errors will typically result in a 500 Internal Server Error.
