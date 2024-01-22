@@ -7,7 +7,7 @@ import (
 	"github.com/gorilla/mux"
 )
 
-// NewRouter initializes and returns a new router with all the necessary routes defined.
+
 
 
 func NewRouter(taskHandler *handlers.TaskHandler) *mux.Router {
@@ -15,14 +15,17 @@ func NewRouter(taskHandler *handlers.TaskHandler) *mux.Router {
 
     router.HandleFunc("/tasks", taskHandler.CreateTaskHandler).Methods(http.MethodPost)
 
-	// Routes for operations on a task by ID
+
 	router.HandleFunc("/tasks/{id:[0-9]+}", taskHandler.GetTaskByID).Methods(http.MethodGet)
 
-
 	router.HandleFunc("/tasks/{id:[0-9]+}", taskHandler.UpdateTask).Methods(http.MethodPut)
-	// router.HandleFunc("/tasks/{id:[0-9]+}", handlers.DeleteTaskHandler).Methods(http.MethodDelete)
 
-	// The router is now set up and ready to be used
+	router.HandleFunc("/tasks/{id:[0-9]+}", taskHandler.DeleteTask).Methods(http.MethodDelete)
+
+	router.HandleFunc("/tasks", taskHandler.GetAllTasks).Methods(http.MethodGet)
+
+
+
 	return router
 }
 

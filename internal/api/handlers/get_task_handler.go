@@ -30,9 +30,6 @@ func (h *TaskHandler) GetTaskByID(w http.ResponseWriter, r *http.Request) {
 		// Handle the case where the task is not found
 		http.Error(w, "Task not found", http.StatusNotFound)
 		return
-		// Handle other potential errors
-		// Assume that repo.GetByID will return a sql.ErrNoRows for not found tasks
-		// and other errors for different unexpected situations.
 	}
 
 	// Respond with the task in JSON format
