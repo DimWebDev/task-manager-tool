@@ -2,6 +2,15 @@
 
 ## Overview
 
+### Prerequisites
+
+**Before running the Task Manager Tool locally, please ensure you have the following installed:**
+
+- **GoLang**: Refer to the `go.mod` file for the required Go version.
+- **PostgreSQL**: Version 16.
+
+- Note: The `go.mod` file in the project's root directory specifies the exact version of Go required to run this application. For PostgreSQL, please install the specified version or higher for compatibility.
+
 This project is centered around building a comprehensive Task Manager tool, utilizing GoLang for backend development. In order to proceed with it and run it locally, you must first download Golang and PostgreSQL. The core of the application is an API that provides the necessary operations to create, retrieve, update, and delete tasks. Following RESTful principles, this API offers a coherent and user-friendly set of endpoints for client-side interactions.
 
 ### API-Driven Development Approach
@@ -127,6 +136,7 @@ Represents an error response when operations fail.
 
 ## Database Schema Definition
 
+This project uses PostgreSQL 16.
 As part of the backend setup for the Task Manager tool, a PostgreSQL database schema has been defined to store and manage the data related to tasks.
 
 ### Database Setup on macOS
