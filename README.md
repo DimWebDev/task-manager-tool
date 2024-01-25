@@ -201,15 +201,6 @@ To adhere to industry standards and best practices, I have incorporated unit tes
 
 For our unit tests, I employ `go-sqlmock`, a mock SQL driver that simulates database operations. This tool allows us to test our DAL functions without the need for a real database connection, thus ensuring that the tests are fast, reliable, and do not have side effects on actual databases.
 
-### Running the Tests
-
-To execute the unit tests, run the following command:
-
-```sh
-go test ./internal/repo
-
-```
-
 ## Presentation Layer
 
 ### Overview
@@ -334,3 +325,25 @@ To interact with the Task Manager Tool's functionality, you can locally execute 
    - A successful deletion will result in a 204 No Content response if your API is configured to respond with this status code.
    - If the specified task is not found, you should see a 404 Not Found response.
    - Any server errors will typically result in a 500 Internal Server Error.
+
+## Unit Testing
+
+This application ensures the robustness of its features through comprehensive unit testing. I have developed tests for both the repository (repo) layer and the HTTP handlers (handlers) to verify that our business logic and API endpoints function as expected.
+
+### Repository Tests
+
+The repository tests validate the data access layer, ensuring that all interactions with the database operate correctly. These tests cover a range of scenarios, including successful data retrieval and handling of error cases.
+
+### Handlers Tests
+
+The handlers tests check the application's API layer. They simulate HTTP requests and assert that the responses and HTTP status codes returned by each endpoint are correct. These tests are crucial in confirming that our API behaves correctly under various conditions.
+
+### Running the Tests
+
+To run the unit tests, navigate to the top-level directory of the repository and use the following command:
+
+```sh
+go test ./...
+```
+
+This command will recursively run all tests in the project, including both the repository and handler tests. If you wish to run tests for a specific package, navigate to the package's directory and execute go test
