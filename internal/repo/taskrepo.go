@@ -10,6 +10,17 @@ import (
 	"github.com/DimWebDev/task-manager-tool/internal/model"
 )
 
+// TaskRepository defines the interface for task repository operations.
+type TaskRepository interface {
+    Create(task model.Task) error
+    GetByID(id int) (model.Task, error)
+    GetAll() ([]model.Task, error)
+    Update(task model.Task) error
+    Delete(id int) error
+}
+
+// Ensure TaskRepo implements TaskRepository.
+var _ TaskRepository = &TaskRepo{}
 // TaskRepo provides access to the task storage.
 type TaskRepo struct {
 	db *sql.DB
